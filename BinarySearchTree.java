@@ -55,13 +55,16 @@ public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTre
 	if (node == null){
 	    Node<E> newNode = new Node<E>(data);
 	    node = newNode;
+		System.out.print("Inserting ");				//debug
 	}
 	else {
 	    if (data.compareTo(node.data) <= 0){
 		doInsert(data, node.left);
+		System.out.println("Goin' left");				//debug
 	    }
 	    else {
 		doInsert(data, node.right);
+		System.out.println("Goin' right");				//debug
 	    }
 	}
 	return;
