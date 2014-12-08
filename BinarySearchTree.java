@@ -18,7 +18,8 @@ public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTre
 
     public void insert(E data) {
 
-        Node<E> temp = new Node<E>(data);
+	doInsert(data, root);
+        /*Node<E> temp = new Node<E>(data);
 
         if (root == null) {
             root = temp;
@@ -27,26 +28,41 @@ public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTre
             Node<E> curr = root;
 
             while (true) {
-                if (data.compareTo(curr.data) <= 0) {
+                if (data.compareTo(curr.data) <= 0) {		//if data less than/equal to left
                     if (curr.left != null) {
                         curr = curr.left;
-                    }
+                    }						//if left is null, insert. else, check left tree
                     else {
                         curr.left = temp;
                         break;
                     }
                 }
-                else {
+                else {						//if data less than right
                     if (curr.right != null) {
                         curr = curr.right;
-                    }
+                    }						//if right is null, insert. else, check right tree
                     else {
                         curr.right = temp;
                         break;
                     }
                 }
             }
-        }
+        }*/
+    }
+
+    private void doInsert(E data, Node<E> node){
+	if (node == null){
+	    node = new Node<E>(data);
+	}
+	else {
+	    if (data.compareTo(node.data) <= 0){
+		doInsert(data, node.left);
+	    }
+	    else {
+		doInsert(data, node.right);
+	    }
+	}
+	return;
     }
 
     public Iterator<E> iterator() {
