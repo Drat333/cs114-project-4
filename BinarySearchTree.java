@@ -51,8 +51,10 @@ public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTre
     }
 
     private void doInsert(E data, Node<E> node){
+
 	if (node == null){
-	    node = new Node<E>(data);
+	    Node<E> newNode = new Node<E>(data);
+	    node = newNode;
 	}
 	else {
 	    if (data.compareTo(node.data) <= 0){
