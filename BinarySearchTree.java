@@ -18,7 +18,16 @@ public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTre
 
     public void insert(E data) {
 
-	doInsert(data, root);
+		//doInsert(data, root);
+		Node<E> node = root;
+		node = new Node<E>(data);
+		//root = node;
+		System.out.println("node = " + node);
+		System.out.println("root = " + root);
+		
+		
+		
+		
         /*Node<E> temp = new Node<E>(data);
 
         if (root == null) {
@@ -52,23 +61,22 @@ public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTre
 
     private void doInsert(E data, Node<E> node){
 
-	if (node == null){
-	    Node<E> newNode = new Node<E>(data);
-	    node = newNode;
-		System.out.print("Inserting ");				//debug
+		if (node == null){
+			Node<E> temp = new Node<E>(data);
+			node = temp;
+			System.out.println("\nnode.data = "+node.data);		//debug
+			System.out.println("node = "+node);					//debug
+		} else {
+			if (data.compareTo(node.data) <= 0){
+				System.out.println("Goin' left");				//debug
+				doInsert(data, node.left);
+			} else {
+				System.out.println("Goin' right");				//debug
+				doInsert(data, node.right);
+			}
+		}
+		return;
 	}
-	else {
-	    if (data.compareTo(node.data) <= 0){
-		doInsert(data, node.left);
-		System.out.println("Goin' left");				//debug
-	    }
-	    else {
-		doInsert(data, node.right);
-		System.out.println("Goin' right");				//debug
-	    }
-	}
-	return;
-    }
 
     public Iterator<E> iterator() {
 
