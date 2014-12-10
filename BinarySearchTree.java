@@ -133,25 +133,10 @@ public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTre
     public boolean search(E data) {
 		
 		return doSearch(data, root);
-	
-        /*Node<E> curr = root;
-
-        while (curr != null) {
-            if (data.compareTo(curr.data) == 0) {
-                return true;
-            }
-            else if (data.compareTo(curr.data) < 0) {
-                curr = curr.left;
-            }
-            else {
-                curr = curr.right;
-            }
-        }
-
-        return false;*/
     }
 	
 	public boolean doSearch(E data, Node<E> node){
+	
 		if (node == null){
 			return false;
 		}
