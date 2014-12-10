@@ -18,37 +18,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTre
 
     public void insert(E data) {
 
-	root = doInsert(data, root);
-
-        /*Node<E> temp = new Node<E>(data);
-
-        if (root == null) {
-            root = temp;
-        }
-        else {
-            Node<E> curr = root;
-
-            while (true) {
-                if (data.compareTo(curr.data) <= 0) {		//if data less than/equal to left
-                    if (curr.left != null) {
-                        curr = curr.left;
-                    }						//if left is null, insert. else, check left tree
-                    else {
-                        curr.left = temp;
-                        break;
-                    }
-                }
-                else {						//if data less than right
-                    if (curr.right != null) {
-                        curr = curr.right;
-                    }						//if right is null, insert. else, check right tree
-                    else {
-                        curr.right = temp;
-                        break;
-                    }
-                }
-            }
-        }*/
+		root = doInsert(data, root);
     }
 
     private Node<E> doInsert(E data, Node<E> node){
