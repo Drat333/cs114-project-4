@@ -139,11 +139,10 @@ public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTre
 	
 		if (node == null){
 			return false;
-		}
+		} 
 		if (data.compareTo(node.data) == 0){
 			return true;
-		} 
-		if (data.compareTo(node.data) < 0){
+		} else if (data.compareTo(node.data) < 0){
 			return doSearch(data, node.left);
 		} else if(data.compareTo(node.data) > 0){
 			return doSearch(data, node.right);
