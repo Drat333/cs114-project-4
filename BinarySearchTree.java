@@ -43,7 +43,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTre
 
     public void remove(E data) {
 
-		doRemove(data, root);
+		root = doRemove(data, root);
 	
         /*if (root != null) {
             if (data.compareTo(root.data) == 0) {														//found and remove
@@ -132,12 +132,30 @@ public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTre
         }*/
     }
 	
-	public void doRemove(E data, Node<E> node){
+	public Node<E> doRemove(E data, Node<E> node){
 
 		if (node == null){
-			return;
+			return node;
+		} 
+		if (data.compareTo(node.data) == 0){							//if data is found, remove
+			if (node.left == null && node.right == null){				//if node is a leaf
+				return node = null;
+			} else if(node.left == null && node.right != null){			//if node has 1 child
+				node = node.left;
+				node.left = null;
+				return node;
+			} else {													//if node has 2 children
+				Node<E> iop = findIOP(node);
+				node = iop;
+				iop = null;
+				return node;
+			}
+		} else if(data.compareTo(node.data) < 0){						//if data is smaller than node, go left
+			return doRemove(data, node.left);
+		} else if(data.compareTo(node.data) > 0){						//if data is larger than node, go right
+			return doRemove(data, node.right);
 		}
-				
+		return node;
 	}
 
     public boolean search(E data) {
