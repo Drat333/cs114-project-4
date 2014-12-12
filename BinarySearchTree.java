@@ -6,6 +6,7 @@
  */
 
 import java.util.Iterator;
+import java.util.Stack;
 
 public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTree<E> {
 
@@ -38,7 +39,34 @@ public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTre
 
     public Iterator<E> iterator() {
 
-        return null;
+        return new Iterator<E>() {
+		
+			private Stack<Node<E>> stack = new Stack<Node<E>>();
+			
+			private void pushLKey(Node<E> node){
+				while (node != null){
+					stack.push(node);
+					node = node.left;
+				}
+			}
+		
+			public boolean hasNext() {
+				
+				return !stack.isEmpty();
+			}
+				
+			public E next() {
+				
+				Node<E> node = stack.pop();
+				pushLKey(node.right);
+				return node.data;
+			}
+			
+			public void remove() {
+			
+				throw new UnsupportedOperationException();
+			}
+		};
     }
 
     public void remove(E data) {
