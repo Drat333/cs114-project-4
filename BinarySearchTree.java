@@ -26,7 +26,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTre
 
 		if (node == null){
 			return new Node<E>(data);
-		} else {
+		} else{
 			if (data.compareTo(node.data) <= 0){
 				node.left = doInsert(data, node.left);
 				return node;
@@ -101,21 +101,24 @@ public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTre
 	}
 
     public boolean search(E data) {
-
-        Node<E> curr = root;
-
-        while (curr != null) {
-            if (data.compareTo(curr.data) == 0) {
-                return true;
-            }
-            else if (data.compareTo(curr.data) < 0) {
-                curr = curr.left;
-            }
-            else {
-                curr = curr.right;
-            }
-        }
-
-        return false;
+		
+		return doSearch(data, root);
     }
+	
+	public boolean doSearch(E data, Node<E> node){
+	
+		if (node == null){
+			return false;
+		} 
+		if (data.compareTo(node.data) == 0){
+			return true;
+		} else if (data.compareTo(node.data) < 0){
+			return doSearch(data, node.left);
+		} else if(data.compareTo(node.data) > 0){
+			return doSearch(data, node.right);
+		} else{
+			return false;
+		}
+	
+	}
 }
