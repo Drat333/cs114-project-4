@@ -147,7 +147,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> extends BinaryTre
 			} else {													//if node has 2 children
 				Node<E> iop = findIOP(node);
 				node = iop;
-				iop = null;
+				iop = doRemove(data, iop);
 				return node;
 			}
 		} else if(data.compareTo(node.data) < 0){						//if data is smaller than node, go left
